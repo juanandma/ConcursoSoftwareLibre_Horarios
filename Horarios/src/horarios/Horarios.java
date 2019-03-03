@@ -6,6 +6,7 @@
 package horarios;
 
 import java.time.LocalTime;
+import java.util.List;
 
 /**
  *
@@ -32,6 +33,28 @@ public class Horarios {
         }
 
         return coincide;
+    }
+    
+    
+    private boolean coincideListaHoras(List<Hora> horario) {
+
+        boolean coincide = false;
+
+        int i, j;
+        i = j = 0;
+
+        int n = horario.size();
+        while (i < n && !coincide) {
+
+            while (j < n && !coincide) {
+
+                if (i > j) {
+                    coincide = coincidenHoras(horario.get(i), horario.get(j));
+                }
+            }
+        }
+        return coincide;
+
     }
     
 }
