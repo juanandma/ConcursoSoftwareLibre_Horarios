@@ -17,4 +17,29 @@ public class Hora {
     private int Dia; //DIAS DE LA SEMANA (1=LUNES,...,5=VIERNES)
     private LocalTime HInicio;
     private LocalTime HFin;
+    
+     public int getDia() {
+        return Dia;
+    }
+
+    public void setDia(int Dia) {
+        this.Dia = Dia;
+    }
+
+    public LocalTime getHInicio() {
+        return HInicio;
+    }
+
+    public void setHInicio(LocalTime HInicio) {
+        this.HInicio = HInicio;
+    }
+
+    public LocalTime getHFin() {
+        return HFin;
+    }
+
+    public void setHFin(LocalTime HFin) {
+        this.HFin = HFin;
+    }
+    
 }
