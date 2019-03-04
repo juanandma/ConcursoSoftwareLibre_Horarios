@@ -6,6 +6,7 @@
 package horarios;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,6 @@ import java.util.List;
  */
 public class Horarios {
 
-    
     //Las busquedas son todas exhaustivas (malo)
     private boolean coincidenHoras(Hora h1, Hora h2) {
 
@@ -34,8 +34,7 @@ public class Horarios {
 
         return coincide;
     }
-    
-    
+
     private boolean coincideListaHoras(List<Hora> horario) {
 
         boolean coincide = false;
@@ -56,8 +55,7 @@ public class Horarios {
         return coincide;
 
     }
-    
-    
+
     private boolean coincidenAsignaturasTeoria(Asignatura a1, Asignatura a2) {
 
         boolean coincide = false;
@@ -96,9 +94,7 @@ public class Horarios {
 
         return coincide;
     }
-    
-    
-    
+
     public boolean coincideHorarioTeoria(List<Asignatura> asignaturas) {
 
         boolean coincide = false;
@@ -118,6 +114,55 @@ public class Horarios {
                 j++;
             }
             i++;
+        }
+
+        return coincide;
+    }
+
+    
+    private boolean coincidenAsignaturasPracticas(List<Asignatura> asignaturas) {
+
+        boolean coincide = false;
+
+        int i, j, l, n1, n2;
+        Hora hora;
+        Asignatura asig;
+        i = j = l = 0;
+
+        List<Hora> horario = new ArrayList<>();
+
+        n1 = asignaturas.size();
+
+        //horario tiene el primer grupo de practicas de cada asignatura
+        for (int k = 0; k < n1; k++) {
+
+            n2 = asignaturas.get(k).getHorarioPractica().size();
+
+            if (n2 != 0) {
+
+                asig = asignaturas.get(k);
+
+                while (coincidenhoras) {
+
+                    hora = asig.getHorarioPractica().get(l);
+                    horario.add(hora);
+
+                    if (coincideListaHoras(horario) && l < n2) {
+
+                        horario.remove(hora);
+                        l++;
+                        hora = asig.getHorarioPractica().get(l);
+                        horario.add(hora);
+                    } else {
+                        coincidenhoras = false;
+                    }
+                }
+
+            } else {
+
+                horario.add(null);
+            }
+
         }
 
         return coincide;
