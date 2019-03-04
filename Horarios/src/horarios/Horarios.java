@@ -58,5 +58,42 @@ public class Horarios {
     }
     
     
-    
+    private boolean coincidenAsignaturasTeoria(Asignatura a1, Asignatura a2) {
+
+        boolean coincide = false;
+        int i, j;
+        i = j = 0;
+        int n1, n2;
+
+        if (a1.getCuatrimestre() == a2.getCuatrimestre()) {
+
+            List<Hora> clases_1 = a1.getHorarioTeoria();
+            List<Hora> clases_2 = a2.getHorarioTeoria();
+
+            n1 = clases_1.size();
+            n2 = clases_2.size();
+
+            while (i < n1 && !coincide) {
+                while (j < n2 && !coincide) {
+
+                    int dia1 = clases_1.get(i).getDia();
+                    int dia2 = clases_2.get(j).getDia();
+
+                    if (dia1 == dia2) {
+
+                        coincide = coincidenHoras(clases_1.get(i), clases_2.get(j));
+                    }
+
+                    j++;
+                }
+                i++;
+            }
+
+            if (coincide) {
+                System.out.println("Coinciden: " + a1.getNombre() + " y " + a2.getNombre());
+            }
+        }
+
+        return coincide;
+    }
 }
