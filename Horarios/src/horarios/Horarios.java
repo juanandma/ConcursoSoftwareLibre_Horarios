@@ -96,4 +96,30 @@ public class Horarios {
 
         return coincide;
     }
+    
+    
+    
+    public boolean coincideHorarioTeoria(List<Asignatura> asignaturas) {
+
+        boolean coincide = false;
+
+        int i, j;
+        i = j = 0;
+
+        int n = asignaturas.size();
+
+        while (i < n && !coincide) {
+            while (j < n && !coincide) {
+
+                if (i != j) {
+                    coincide = coincidenAsignaturasTeoria(asignaturas.get(i), asignaturas.get(j));
+                }
+
+                j++;
+            }
+            i++;
+        }
+
+        return coincide;
+    }
 }
