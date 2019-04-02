@@ -120,7 +120,7 @@ public class Horarios {
     }
 
     //devuelve true si no existe ninguna combinacion en la que las practicas de una asignatura 
-    //sean compatibles con las demas asignaturas.
+    //sean compatibles con las demas practicas de otras asignaturas.
     private boolean coincidenAsignaturasPracticas(List<Asignatura> asignaturas) {
 
         boolean coincide = false;
@@ -139,38 +139,60 @@ public class Horarios {
             n2 = asignaturas.get(i).getHorarioPractica().size();
             GruposPracticas = asignaturas.get(i).getHorarioPractica();
 
-
             for (int j = 0; j < n2; j++) {
 
-                
+                horaProvisional = GruposPracticas.get(j);
 
-                    horaProvisional = GruposPracticas.get(j);
+                if (i == 0) {
 
                     List<Hora> nuevaCombinacion = new ArrayList<>();
                     nuevaCombinacion.add(horaProvisional);
+
                     horariosProvisionales.add(nuevaCombinacion);
 
-                    if (coincideListaHoras(nuevaCombinacion)) {
-
-                        horariosProvisionales.remove(nuevaCombinacion);
-                    }
-                    j++;
-                }
-
-                //Si esta vacio significa que no hay ninguna combinacion en la no coincidan practicas con practicas
-                if (horariosProvisionales.isEmpty()) {
-                    coincide = true;
                 } else {
-                    i++;
+
+                    for (int k = 0; k < horariosProvisionales.size(); k++) {
+
+                        List<Hora> nuevaCombinacion = new ArrayList<>();
+
+                        //Extrae un horario de la anterior iteracion
+                        List<Hora> horarioBorrado = horariosProvisionales.remove(k);
+
+                        for (int l = 0; l < horarioBorrado.size(); l++) {
+                            nuevaCombinacion.add(horarioBorrado.get(l));
+                        }
+                        nuevaCombinacion.add(horaProvisional);
+
+                        //Si horaProvisional es compatible con el horario que tenemos por ahora
+                        if (!coincideListaHoras(nuevaCombinacion)) {
+
+                            horariosProvisionales.add(nuevaCombinacion);
+                        } else {
+                            nuevaCombinacion.clear();
+                        }
+
+                    }
                 }
 
+                j++;
             }
 
-            return coincide;
+            //Si esta vacio significa que no existe ninguna combinacion en la no coincidan practicas con practicas
+            if (horariosProvisionales.isEmpty()) {
+
+                coincide = true;
+            } else {
+                i++;
+            }
+
         }
-    
-        // devuelve true si no existe alguna conbinacion grupos de practicas de todas las 
-        //asignaturas que no tenga ninguna coincidencia entre teorias
+
+        return coincide;
+    }
+
+    // devuelve true si no existe alguna conbinacion grupos de practicas de todas las 
+    //asignaturas que no tenga ninguna coincidencia entre teorias
     private boolean coincidenPracticaTeoria(List<Asignatura> asignaturas) {
         boolean coincide = true;
 
