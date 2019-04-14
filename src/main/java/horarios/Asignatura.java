@@ -15,26 +15,23 @@ public class Asignatura {
 
     private String Nombre;
     private int ID;
-    private int ngrupos;
     private List<Hora> horarioTeoria;
     private List<Hora> horarioPractica;
     private int cuatrimestre;
     private int curso;
 
-    public Asignatura(String Nombre, int ID, int ngrupos, int cuatrimestre, int curso, List<Hora> horarioTeoria, List<Hora> horarioPractica) {
+    public Asignatura(String Nombre, int ID,  int cuatrimestre, int curso, List<Hora> horarioTeoria, List<Hora> horarioPractica) {
         this.Nombre = Nombre;
         this.ID = ID;
-        this.ngrupos = ngrupos;
         this.cuatrimestre = cuatrimestre;
         this.horarioTeoria = horarioTeoria;
         this.horarioPractica = horarioPractica;
         this.curso = curso;
     }
 
-    public Asignatura(String Nombre, int ID, int ngrupos, int cuatrimestre) {
+    public Asignatura(String Nombre, int ID, int cuatrimestre) {
         this.Nombre = Nombre;
         this.ID = ID;
-        this.ngrupos = ngrupos;
         this.cuatrimestre = cuatrimestre;
     }
 
@@ -52,14 +49,6 @@ public class Asignatura {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public int getNgrupos() {
-        return ngrupos;
-    }
-
-    public void setNgrupos(int ngrupos) {
-        this.ngrupos = ngrupos;
     }
 
     public List<Hora> getHorarioTeoria() {
