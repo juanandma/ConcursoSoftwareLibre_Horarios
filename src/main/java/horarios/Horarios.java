@@ -35,20 +35,24 @@ public class Horarios {
         return coincide;
     }
 
+    //devuelve true si alguna de las clases pasadas por parametro coincide
     private boolean coincideListaHoras(List<Hora> horario) {
 
         boolean coincide = false;
 
-        int i, j;
-        i = j = 0;
+        if (horario != null) {
 
-        int n = horario.size();
-        while (i < n && !coincide) {
+            int i, j;
+            i = j = 0;
 
-            while (j < n && !coincide) {
+            int n = horario.size();
+            while (i < n && !coincide) {
 
-                if (i > j) {
-                    coincide = coincidenHoras(horario.get(i), horario.get(j));
+                while (j < n && !coincide) {
+
+                    if (i > j) {
+                        coincide = coincidenHoras(horario.get(i), horario.get(j));
+                    }
                 }
             }
         }
@@ -143,7 +147,7 @@ public class Horarios {
 
                 horaProvisional = GruposPracticas.get(j);
 
-                if (i == 0) {
+                if (j == 0) {
 
                     List<Hora> nuevaCombinacion = new ArrayList<>();
                     nuevaCombinacion.add(horaProvisional);

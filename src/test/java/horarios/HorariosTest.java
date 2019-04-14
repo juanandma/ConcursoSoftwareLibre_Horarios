@@ -85,7 +85,7 @@ public class HorariosTest {
     /**
      * Test of coincidenAsignaturasPracticas method, of class Horarios.
      */
-    /*@Test
+    @Test
     public void testCoincidenAsignaturasPracticas() {
         System.out.println("coincidenAsignaturasPracticas");
         
@@ -117,7 +117,7 @@ public class HorariosTest {
         boolean expResult = false;
         boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
         assertEquals(expResult, result);
-    }*/
+    }
 
     /**
      * Test of coincidenPracticaTeoria method, of class Horarios.
