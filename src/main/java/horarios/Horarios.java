@@ -230,9 +230,9 @@ public class Horarios
         boolean coincide = false;
         List<Asignatura> restantes = asignaturas;
         List<Hora> solActual = new ArrayList<>();
-
+        
         coincide = coincidenAsignaturasPracticas2Recursiva(asignaturas.size(), solActual, restantes);
-
+        
         return coincide;
 
     }
@@ -240,19 +240,23 @@ public class Horarios
     public boolean coincidenAsignaturasPracticas2Recursiva(int nuAsig, List<Hora> solActual, List<Asignatura> restantes)
     {
 
-        boolean coincide = false;
+        boolean coincide = true;
+        
+        //parte de debug
+        System.out.println(solActual.size());
+        System.out.println(restantes.size());
 
         if (solActual.size() == nuAsig)
         {
-            coincide = true;
+            coincide = false;
         } else
         {
             int i = 0;
-            while (coincide == false && i < restantes.get(solActual.size()).getHorarioPractica().size())
+            while (coincide == true && i < restantes.get(0).getHorarioPractica().size())
             {
                 boolean porAhoraNoCoinciden = true;
                 
-                Hora hora1 = restantes.get(solActual.size()).getHorarioPractica().get(i);
+                Hora hora1 = restantes.get(0).getHorarioPractica().get(i);
                 
                 for( int j = 0; j < solActual.size(); j++)
                 {

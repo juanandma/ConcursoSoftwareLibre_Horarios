@@ -115,7 +115,8 @@ public class HorariosTest {
         asignaturas.add(asig1);
         Horarios instance = new Horarios();
         boolean expResult = false;
-        boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
+        //boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
+        boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
         assertEquals(expResult, result);
     }
 
@@ -186,5 +187,13 @@ public class HorariosTest {
 
         
     }
+    
+    
+    public static void main(String[] args) {
+        
+        HorariosTest prueba = new HorariosTest();
+        prueba.testCoincidenPracticaTeoria();
+    }
+    
     
 }
