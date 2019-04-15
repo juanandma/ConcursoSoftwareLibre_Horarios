@@ -91,7 +91,8 @@ public class HorariosTest {
         
         
         boolean expResult = false;
-        boolean result = instance.coincidenAsignaturasPracticas(horarios);
+        //boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
+        boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
         assertEquals(expResult, result);
     }
 
