@@ -249,7 +249,7 @@ public class Horarios {
             System.out.println("---- LISTA DE ASIGNATURAS ---");
             String dia;
             for (int i = 0; i < asignaturas.size(); i++) {
-                System.out.println("Nombre: " + asignaturas.get(i).getNombre() + "\nID: " + asignaturas.get(i).getID());
+                System.out.println("Nombre: " + asignaturas.get(i).getNombre() + "\nID: " + asignaturas.get(i).getIdAsignatura());
                 System.out.println("Curso: " + asignaturas.get(i).getCurso() + "\nCuatrimestre: " + asignaturas.get(i).getCuatrimestre());
                 System.out.println("Horario de teoría:");
                 for (int j = 0; j < asignaturas.get(i).getHorarioTeoria().size(); j++) {
@@ -264,7 +264,7 @@ public class Horarios {
                     } else {
                         dia = "Viernes";
                     }
-                    System.out.println(dia + " de " + asignaturas.get(i).getHorarioTeoria().get(j).getHInicio() + " a " + asignaturas.get(i).getHorarioTeoria().get(j).getHFin());
+                    System.out.println(dia + " de " + asignaturas.get(i).getHorarioTeoria().get(j).getHoraInicio() + " a " + asignaturas.get(i).getHorarioTeoria().get(j).getHoraFin());
                 }
                 System.out.println("Horario de prácticas:");
                 for (int j = 0; j < asignaturas.get(i).getHorarioPractica().size(); j++) {
@@ -279,7 +279,7 @@ public class Horarios {
                     } else {
                         dia = "Viernes";
                     }
-                    System.out.println(dia + " de " + asignaturas.get(i).getHorarioPractica().get(j).getHInicio() + " a " + asignaturas.get(i).getHorarioPractica().get(j).getHFin());
+                    System.out.println(dia + " de " + asignaturas.get(i).getHorarioPractica().get(j).getHoraInicio() + " a " + asignaturas.get(i).getHorarioPractica().get(j).getHoraFin());
                 }
                 System.out.println("-------------------");
 
