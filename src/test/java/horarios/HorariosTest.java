@@ -47,132 +47,81 @@ public class HorariosTest {
     public void testCoincideHorarioTeoria() {
         System.out.println("coincideHorarioTeoria");
         
-        LocalTime inicio1 = LocalTime.of(10, 0);
-        LocalTime fin1 = LocalTime.of(11, 0);
-        LocalTime inicio2 = LocalTime.of(9, 0);
-        LocalTime fin2 = LocalTime.of(9, 30);
+        ManejaAsignatura mAsig=new ManejaAsignatura();
         
+        List<Asignatura> asignaturas = mAsig.getAsignaturas();
         
-        Hora h1= new Hora(1,inicio1,fin1);
-        Hora h2= new Hora(1, inicio2, fin2);
-        
-        
-        List<Hora> Teoria1 = new ArrayList<>();
-        Teoria1.add(h1);
-        List<Hora> Teoria2 = new ArrayList<>();
-        Teoria2.add(h2);
-        
-        
-        Asignatura asig1=new Asignatura("mates", 1, 1, 1, Teoria1, null);
-        Asignatura asig2=new Asignatura("fisica", 1, 1, 1, Teoria2, null);
-        
-        
-        List<Asignatura> asignaturas = new ArrayList<>();
-        
-        asignaturas.add(asig2);
-        asignaturas.add(asig1);
         
         Horarios instance = new Horarios();
         
-        instance.coincideHorarioTeoria(asignaturas);
+        List<Asignatura> horarios = new ArrayList<>();
+        
+        horarios.add(asignaturas.get(0));
+        horarios.add(asignaturas.get(3));
+        horarios.add(asignaturas.get(5));
+        
+        instance.coincideHorarioTeoria(horarios);
         boolean expResult = false;
         boolean result = instance.coincideHorarioTeoria(asignaturas);
         
         
         assertEquals(expResult, result);
     }
-
+    
     /**
      * Test of coincidenAsignaturasPracticas method, of class Horarios.
      */
+    
     @Test
     public void testCoincidenAsignaturasPracticas() {
         System.out.println("coincidenAsignaturasPracticas");
         
-        LocalTime inicio1 = LocalTime.of(10, 0);
-        LocalTime fin1 = LocalTime.of(11, 0);
-        LocalTime inicio2 = LocalTime.of(9, 0);
-        LocalTime fin2 = LocalTime.of(9, 30);
+        ManejaAsignatura mAsig=new ManejaAsignatura();
+        
+        List<Asignatura> asignaturas = mAsig.getAsignaturas();
         
         
-        Hora h1= new Hora(1,inicio1,fin1);
-        Hora h2= new Hora(1, inicio2, fin2);
-        
-        
-        List<Hora> Practica1 = new ArrayList<>();
-        Practica1.add(h1);
-        List<Hora> Practica2 = new ArrayList<>();
-        Practica2.add(h2);
-        
-        
-        Asignatura asig1=new Asignatura("mates", 1, 1, 1, null, Practica1);
-        Asignatura asig2=new Asignatura("fisica", 1, 1, 1, null, Practica2);
-        
-        
-        List<Asignatura> asignaturas = new ArrayList<>();
-        
-        asignaturas.add(asig2);
-        asignaturas.add(asig1);
         Horarios instance = new Horarios();
+        
+        List<Asignatura> horarios = new ArrayList<>();
+        
+        horarios.add(asignaturas.get(0));
+        horarios.add(asignaturas.get(3));
+        horarios.add(asignaturas.get(5));
+        
+        
         boolean expResult = false;
-        boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
+        boolean result = instance.coincidenAsignaturasPracticas(horarios);
         assertEquals(expResult, result);
     }
 
     /**
      * Test of coincidenPracticaTeoria method, of class Horarios.
      */
-    @Test
+    /*@Test
     public void testCoincidenPracticaTeoria() {
         System.out.println("coincidenPracticaTeoria");
         
-        LocalTime inicio1 = LocalTime.of(10, 0);
-        LocalTime fin1 = LocalTime.of(11, 0);
+        ManejaAsignatura mAsig=new ManejaAsignatura();
         
-        LocalTime inicio2 = LocalTime.of(9, 0);
-        LocalTime fin2 = LocalTime.of(9, 30);
+        List<Asignatura> asignaturas = mAsig.getAsignaturas();
         
-        LocalTime inicio3 = LocalTime.of(12, 0);
-        LocalTime fin3 = LocalTime.of(13, 30);
-        
-        LocalTime inicio4 = LocalTime.of(9, 0);
-        LocalTime fin4 = LocalTime.of(11, 30);
-        
-        
-        Hora h1= new Hora(1,inicio1,fin1);
-        Hora h2= new Hora(1, inicio2, fin2);
-        Hora h3= new Hora(1, inicio3, fin3);
-        Hora h4= new Hora(1, inicio4, fin4);
-        
-        List<Hora> Teoria1 = new ArrayList<>();
-        Teoria1.add(h3);
-        List<Hora> Practica1 = new ArrayList<>();
-        Practica1.add(h1);
-        
-        List<Hora> Teoria2 = new ArrayList<>();
-        Teoria2.add(h4);
-        List<Hora> Practica2 = new ArrayList<>();
-        Practica2.add(h2);
-        
-        
-        Asignatura asig1=new Asignatura("mates", 1, 1, 1, Teoria1, Practica1);
-        Asignatura asig2=new Asignatura("fisica", 1, 1, 1, Teoria2, Practica2);
-        
-        
-        List<Asignatura> asignaturas = new ArrayList<>();
-        
-        asignaturas.add(asig2);
-        asignaturas.add(asig1);
         
         Horarios instance = new Horarios();
-        boolean expResult = true;
-        boolean result = instance.coincidenPracticaTeoria(asignaturas);
+        
+        List<Asignatura> horarios = new ArrayList<>();
+        
+        horarios.add(asignaturas.get(0));
+        horarios.add(asignaturas.get(3));
+        horarios.add(asignaturas.get(5));
+        
+        
+        boolean expResult = false;
+        boolean result = instance.coincidenPracticaTeoria(horarios);
         assertEquals(expResult, result);
         
 
-    }
-    
-    
+    }*/
 
     /**
      * Test of VerAsignaturas method, of class Horarios.
@@ -186,5 +135,5 @@ public class HorariosTest {
 
         
     }
-    
+
 }
