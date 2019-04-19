@@ -230,9 +230,9 @@ public class Horarios
         boolean coincide = false;
         List<Asignatura> restantes = asignaturas;
         List<Hora> solActual = new ArrayList<>();
-        
+
         coincide = coincidenAsignaturasPracticas2Recursiva(asignaturas.size(), solActual, restantes);
-        
+
         return coincide;
 
     }
@@ -241,7 +241,7 @@ public class Horarios
     {
 
         boolean coincide = true;
-        
+
         //parte de debug
         System.out.println(solActual.size());
         System.out.println(restantes.size());
@@ -255,27 +255,27 @@ public class Horarios
             while (coincide == true && i < restantes.get(0).getHorarioPractica().size())
             {
                 boolean porAhoraNoCoinciden = true;
-                
+
                 Hora hora1 = restantes.get(0).getHorarioPractica().get(i);
-                
-                for( int j = 0; j < solActual.size(); j++)
+
+                for (int j = 0; j < solActual.size(); j++)
                 {
                     Hora hora2 = solActual.get(j);
-                    
-                    if ( coincidenHoras( hora1, hora2 ) )
+
+                    if (coincidenHoras(hora1, hora2))
                     {
                         porAhoraNoCoinciden = false;
                     }
                 }
-                
-                if ( porAhoraNoCoinciden == true )
+
+                if (porAhoraNoCoinciden == true)
                 {
                     solActual.add(hora1);
                     List<Asignatura> restantesAuxiliar = restantes;
                     restantesAuxiliar.remove(0);
                     coincide = coincidenAsignaturasPracticas2Recursiva(nuAsig, solActual, restantesAuxiliar);
                 }
-                
+
                 i++;
             }
 
@@ -327,7 +327,7 @@ public class Horarios
                 {
                     Hora teoria = asignaturas.get(j).getHorarioTeoria().get(k);
                     provisional = coincidenHoras(practica, teoria);
-                    
+
                     k++;
                 }
 
@@ -347,7 +347,8 @@ public class Horarios
 
             System.out.println("---- LISTA DE ASIGNATURAS ---");
             String dia;
-            for (int i = 0; i < asignaturas.size(); i++) {
+            for (int i = 0; i < asignaturas.size(); i++)
+            {
                 System.out.println("Nombre: " + asignaturas.get(i).getNombre() + "\nID: " + asignaturas.get(i).getIdAsignatura());
                 System.out.println("Curso: " + asignaturas.get(i).getCurso() + "\nCuatrimestre: " + asignaturas.get(i).getCuatrimestre());
                 System.out.println("Horario de teoría:");
@@ -397,6 +398,63 @@ public class Horarios
             }
         }
 
+    }
+
+    //devuelve una lista de horas llamando a la funcion recursiva
+    //se asume que las asignaturas son compatibles entre si
+    public List<Hora> getHorario(List<Asignatura> asignaturas)
+    {
+        List<Hora> horario = new ArrayList<>();
+
+        //añade todas las teorias de todas las asignaturas
+        for (int i = 0; i < asignaturas.size(); i++)
+        {
+            for (int j = 0; j < asignaturas.get(i).getHorarioTeoria().size(); j++)
+            {
+                horario.add(asignaturas.get(i).getHorarioTeoria().get(j));
+            }
+        }
+
+        List<Asignatura> restantes = asignaturas;
+
+        //se llama a la funcion recursiva
+        horario = getHorario(horario, restantes, restantes.size());
+
+        return horario;
+    }
+
+    // funcion recursiva que devuelve una lista de horas compatibles
+    public List<Hora> getHorario(List<Hora> horario, List<Asignatura> restantes, int numAsig)
+    {
+
+        if (restantes.size() > 0)
+        {
+            int i = 0;
+
+            // continua buscando hasta que encuentre una solucion o se quede sin practicas
+            while (horario.size() < (numAsig * 2) && i < restantes.get(0).getHorarioPractica().size())
+            {
+                Hora nuevaHora = restantes.get(0).getHorarioPractica().get(i);
+
+                List<Hora> horarioAux = horario;
+                horarioAux.add(nuevaHora);
+
+                if (coincideListaHoras(horarioAux) == false)
+                {
+                    List<Asignatura> restantesAux = restantes;
+                    restantesAux.remove(0);
+
+                    horarioAux = getHorario(horarioAux, restantesAux, numAsig);
+                }
+
+                if (horarioAux.size() == numAsig * 2)
+                {
+                    horario = horarioAux;
+                }
+            }
+        }
+
+        return horario;
     }
 
 }

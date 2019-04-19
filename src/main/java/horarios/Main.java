@@ -16,62 +16,197 @@ import java.util.logging.Logger;
  *
  * @author JUANM
  */
-public class Main {
-    
-    public static void main(String[] args) {
+public class Main
+{
 
-        List<Asignatura> asignaturas = new ArrayList<>();
-        Horarios horario = new Horarios();
+    private List<Asignatura> asignaturas;
+    private List<Asignatura> asignaturasSeleccionadas;
+    private Horarios horario;
+    private ManejaAsignatura conexion;
+
+    Main()
+    {
+        // conexion con la base de datos
+        conexion = new ManejaAsignatura();
+        conexion.iniciaOperacion();
+
+        // inicializacion de variables
+        asignaturas = conexion.getAsignaturas();
+        asignaturasSeleccionadas = new ArrayList<>();
+        horario = new Horarios();
+    }
+
+    public static void main(String[] args)
+    {
+        Main prueba = new Main();
+        prueba.menu();
+    }
+
+    void menu()
+    {
+        // variables del menu
         Scanner input = new Scanner(System.in);
+        int opcion;
 
-        List<Asignatura> mis_clases = new ArrayList<>();
-
-        int id, salir;
-
-        horario.VerAsignaturas(asignaturas);
-        do {
-            
-
-            System.out.println("\t4. Comprobar horario");
-            System.out.println("\t Crear mi horario");
+        do
+        {
             System.out.println("\t0. Salir");
-            
-            salir = input.nextInt();
-            
-            switch (salir) {
-                
-                case 4: {
-                    do {
-                        System.out.println("        *** " + '"' + "0" + '"' + " para terminar");
-                        System.out.println("Introduce el ID de la asignatura que quiere en su Horario: ");
-                        id = input.nextInt();
-                        
-                        if (id > 0 && id < asignaturas.size() + 1) {
-                            mis_clases.add(asignaturas.get(id - 1));
-                        }
-                        
-                    } while (id != 0);
-                    
-                    horario.VerAsignaturas(mis_clases);
-                    if (horario.coincideHorarioTeoria(mis_clases)) {
-                        System.out.println("Coincide su horario de teoría");
-                        
-                    } else {
-                        
-                        /*if (horario.coincideHorarioPracticas(mis_clases)) {
-                        System.out.println("Coincide su horario de práticas");
-                        
-                        } else {*/
-                        System.out.println("No coincide ninguna asignatura");
-                        
-                        //}
+            System.out.println("\t1. Comprobar horario");
+            System.out.println("\t2 Crear mi horario");
+            System.out.println("\t3. Ver asignaturas totales");
+            System.out.println("\t4. Ver asignaturas seleccionadas");
+            System.out.println("\t5. seleccionar asignaturas");
+
+            opcion = input.nextInt();
+
+            switch (opcion)
+            {
+
+                // comprueba si un conjunto de asignaturas es compatible
+                case 1:
+                {
+                    if (comprobarHorario() == true)
+                    {
+                        System.out.println("las asignaturas son compatibles");
+                    } else
+                    {
+                        System.out.println("las asignaturas son no son compatibles");
+                    }
+
+                    break;
+                }
+
+                // devuelve una lista de horas de teoria y practica compatibles
+                case 2:
+                {
+                    mostrarHorario(horario.getHorario(asignaturasSeleccionadas));
+                    break;
+                }
+
+                // muestra las asignaturas totales en la pantalla
+                case 3:
+                {
+                    horario.VerAsignaturas(asignaturas);
+                    System.out.println("\n\n");
+                    break;
+                }
+
+                // muestra las asignaturas seleccionadas en la pantalla
+                case 4:
+                {
+                    horario.VerAsignaturas(asignaturasSeleccionadas);
+                    System.out.println("\n\n");
+                    break;
+                }
+
+                // permite seleccionar asignaturas
+                case 5:
+                {
+                    seleccionarAsignaturas();
+
+                    break;
+                }
+
+            }
+
+        } while (opcion != 0);
+
+        salir();
+    }
+
+    boolean comprobarHorario()
+    {
+        boolean valido = true;
+
+        valido = horario.coincideHorarioTeoria(asignaturasSeleccionadas);
+
+        if (valido == true)
+        {
+            valido = horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
+        }
+
+        if (valido == true)
+        {
+            valido = horario.coincidenPracticaTeoria(asignaturasSeleccionadas);
+        }
+
+        return valido;
+    }
+
+    void seleccionarAsignaturas()
+    {
+        // borro las asignaturas seleccionadas anteriormente
+        asignaturasSeleccionadas = new ArrayList<>();
+
+        System.out.println("introduzca el numero de asignaturas a introducir");
+        Scanner input = new Scanner(System.in);
+        int numAsig = input.nextInt();
+
+        if (numAsig > asignaturas.size() || numAsig < 0)
+        {
+            System.out.println("numero de asignaturas incorrecto \n\n");
+        } else
+        {
+            for (int i = 0; i < numAsig; i++)
+            {
+                System.out.println("introduzca el nombre de la asignatura a seleccionar");
+                String nombreAsig = input.nextLine();
+
+                int j = 0;
+                boolean encontrado = false;
+
+                while (j < asignaturas.size() && encontrado == false)
+                {
+                    if (asignaturas.get(j).getNombre() == nombreAsig)
+                    {
+                        encontrado = true;
+                        asignaturasSeleccionadas.add(asignaturas.get(j));
+                    }
+                    j++;
+                }
+            }
+        }
+    }
+
+    void mostrarHorario(List<Hora> horario)
+    {
+        System.out.println("---- HORARIO ---\n\n");
+
+        for (int cuatrimestre = 1; cuatrimestre < 3; cuatrimestre++)
+        {
+            System.out.println("---- CUATRIMESTRE " + cuatrimestre + " ---\n");
+            for (int i = 0; i < horario.size(); i++)
+            {
+                if (horario.get(i).getTipo() == cuatrimestre)
+                {
+                    System.out.println(horario.get(i).getAsignatura().getNombre());
+
+                    switch (horario.get(i).getDia())
+                    {
+                        case 1:
+                            System.out.println("lunes" + horario.get(i).getHInicio());
+                            break;
+                        case 2:
+                            System.out.println("Martes" + horario.get(i).getHInicio());
+                            break;
+                        case 3:
+                            System.out.println("Miércoles" + horario.get(i).getHInicio());
+                            break;
+                        case 4:
+                            System.out.println("Jueves" + horario.get(i).getHInicio());
+                            break;
+                        default:
+                            System.out.println("Viernes" + horario.get(i).getHInicio());
+                            break;
                     }
                 }
-                break;
-                
             }
-            
-        } while (salir != 0);
-        
+        }
     }
+
+    void salir()
+    {
+        conexion.finalizaOperacion();
+    }
+
 }
