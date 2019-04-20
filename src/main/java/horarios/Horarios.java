@@ -20,7 +20,7 @@ public class Horarios
     private boolean coincidenHoras(Hora h1, Hora h2)
     {
 
-        boolean coincide = false;
+        boolean coincide = true;
 
         LocalTime inicio1 = h1.getHInicio();
         LocalTime fin1 = h1.getHFin();
@@ -28,11 +28,21 @@ public class Horarios
         LocalTime inicio2 = h2.getHInicio();
         LocalTime fin2 = h2.getHFin();
 
-        if (inicio1.isBefore(fin2) && fin1.isAfter(inicio2) && !inicio1.equals(fin2))
+        if ( fin1.isBefore(inicio2) || fin2.isBefore(inicio1) )
         {
+            coincide = false;
+        }
 
-            coincide = true;
+        //tambien compruebo el dia de la semana
+        if (h1.getDia() != h2.getDia())
+        {
+            coincide = false;
+        }
 
+        // y el cuatrimestre
+        if (h1.getAsignatura().getCuatrimestre() != h2.getAsignatura().getCuatrimestre())
+        {
+            coincide = false;
         }
 
         return coincide;
@@ -44,28 +54,25 @@ public class Horarios
 
         boolean coincide = false;
 
-        if (horario != null)
+        int i = 0;
+
+        while (i < horario.size() && coincide == false)
         {
+            Hora horaActual = horario.get(i);
 
-            int i, j;
-            i = j = 0;
-
-            int n = horario.size();
-            while (i < n && !coincide)
+            for (int j = i; j < horario.size(); j++)
             {
-
-                while (j < n && !coincide)
+                if (j != i)
                 {
-
-                    if (i > j)
+                    if (coincidenHoras(horaActual, horario.get(i)))
                     {
-                        coincide = coincidenHoras(horario.get(i), horario.get(j));
+                        coincide = true;
                     }
                 }
             }
         }
-        return coincide;
 
+        return coincide;
     }
 
     private boolean coincidenAsignaturasTeoria(Asignatura a1, Asignatura a2)
@@ -228,7 +235,7 @@ public class Horarios
     {
 
         boolean coincide = false;
-        List<Asignatura> restantes = asignaturas;
+         List<Asignatura> restantes = new ArrayList<>(asignaturas);
         List<Hora> solActual = new ArrayList<>();
 
         coincide = coincidenAsignaturasPracticas2Recursiva(asignaturas.size(), solActual, restantes);
@@ -241,10 +248,6 @@ public class Horarios
     {
 
         boolean coincide = true;
-
-        //parte de debug
-        System.out.println(solActual.size());
-        System.out.println(restantes.size());
 
         if (solActual.size() == nuAsig)
         {
@@ -288,11 +291,11 @@ public class Horarios
     //asignaturas que no tenga ninguna coincidencia entre teorias
     public boolean coincidenPracticaTeoria(List<Asignatura> asignaturas)
     {
-        boolean coincide = true;
+        boolean coincide = false;
 
         int i = 0;
 
-        while (coincide == true && i < asignaturas.size())
+        while (coincide == false && i < asignaturas.size())
         {
             Asignatura actual = asignaturas.get(i);
             coincide = coincidenPracticaTeoria(actual, asignaturas);
@@ -302,9 +305,9 @@ public class Horarios
         return coincide;
     }
 
-    // devuelve true si no existe alguna conbinacion grupos de practicas que
-    // no tenga ninguna coincidencia entre teoria de las demas asignaturas
-    private boolean coincidenPracticaTeoria(Asignatura actual, List<Asignatura> asignaturas)
+    // devuelve true si no existe alguna conbinacion de una practica de
+    // esta asignatua con las teorias de las demas
+    public boolean coincidenPracticaTeoria(Asignatura actual, List<Asignatura> asignaturas)
     {
         boolean coincide = true;
 
@@ -312,30 +315,35 @@ public class Horarios
 
         while (coincide == true && i < actual.getHorarioPractica().size())
         {
+            Hora horaPractica = actual.getHorarioPractica().get(i);
+            coincide = coincidenPracticaTeoria(horaPractica, asignaturas);
+            i++;
+        }
 
-            int j = 0;
+        return coincide;
+    }
 
-            boolean provisional = false;
+    // devuelve true si no existe alguna conbinacion de esta hora de
+    // esta asignatua con las teorias de las demas
+    public boolean coincidenPracticaTeoria(Hora horaPractica, List<Asignatura> asignaturas)
+    {
+        boolean coincide = false;
 
-            //compruebo que para el grupo i de practicas de la asignatura no coincida
-            while (provisional == false && j < asignaturas.size())
+        int i = 0;
+
+        while (coincide == false && i < asignaturas.size())
+        {
+            List<Hora> horasTeoria = asignaturas.get(i).getHorarioTeoria();
+            horasTeoria.add(horaPractica);
+
+            if (coincideListaHoras(horasTeoria))
             {
-                Hora practica = actual.getHorarioPractica().get(i);
-
-                int k = 0;
-                while (provisional == false && k < asignaturas.size())
-                {
-                    Hora teoria = asignaturas.get(j).getHorarioTeoria().get(k);
-                    provisional = coincidenHoras(practica, teoria);
-
-                    k++;
-                }
-
-                j++;
+                coincide = true;
             }
 
             i++;
         }
+
         return coincide;
     }
 

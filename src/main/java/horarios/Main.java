@@ -28,7 +28,6 @@ public class Main
     {
         // conexion con la base de datos
         conexion = new ManejaAsignatura();
-        conexion.iniciaOperacion();
 
         // inicializacion de variables
         asignaturas = conexion.getAsignaturas();
@@ -40,6 +39,7 @@ public class Main
     {
         Main prueba = new Main();
         prueba.menu();
+        System.out.println("\n fin del programa");
     }
 
     void menu()
@@ -55,7 +55,7 @@ public class Main
             System.out.println("\t2 Crear mi horario");
             System.out.println("\t3. Ver asignaturas totales");
             System.out.println("\t4. Ver asignaturas seleccionadas");
-            System.out.println("\t5. seleccionar asignaturas");
+            System.out.println("\t5. seleccionar asignaturas\n\n");
 
             opcion = input.nextInt();
 
@@ -70,7 +70,7 @@ public class Main
                         System.out.println("las asignaturas son compatibles");
                     } else
                     {
-                        System.out.println("las asignaturas son no son compatibles");
+                        System.out.println("las asignaturas no son compatibles");
                     }
 
                     break;
@@ -111,26 +111,34 @@ public class Main
 
         } while (opcion != 0);
 
-        salir();
     }
 
     boolean comprobarHorario()
     {
-        boolean valido = true;
+        boolean coincide = false;
 
-        valido = horario.coincideHorarioTeoria(asignaturasSeleccionadas);
+        List<Asignatura> aux1 = new ArrayList<>(asignaturasSeleccionadas);
+        List<Asignatura> aux2 = new ArrayList<>(asignaturasSeleccionadas);
+        List<Asignatura> aux3 = new ArrayList<>(asignaturasSeleccionadas);
+        //----
+        System.out.println(horario.coincideHorarioTeoria(aux1));
+        System.out.println(horario.coincidenAsignaturasPracticas2(aux2));
+        System.out.println(horario.coincidenPracticaTeoria(aux3));
+        //----
 
-        if (valido == true)
+        coincide = horario.coincideHorarioTeoria(asignaturasSeleccionadas);
+
+        if (coincide == false)
         {
-            valido = horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
+            coincide = horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
         }
 
-        if (valido == true)
+        if (coincide == false)
         {
-            valido = horario.coincidenPracticaTeoria(asignaturasSeleccionadas);
+            coincide = horario.coincidenPracticaTeoria(asignaturasSeleccionadas);
         }
 
-        return valido;
+        return !coincide;
     }
 
     void seleccionarAsignaturas()
@@ -150,18 +158,19 @@ public class Main
             for (int i = 0; i < numAsig; i++)
             {
                 System.out.println("introduzca el nombre de la asignatura a seleccionar");
-                String nombreAsig = input.nextLine();
+                String nombreAsig = input.next();
 
                 int j = 0;
                 boolean encontrado = false;
 
                 while (j < asignaturas.size() && encontrado == false)
                 {
-                    if (asignaturas.get(j).getNombre() == nombreAsig)
+                    if (nombreAsig.equals(asignaturas.get(j).getNombre()))
                     {
                         encontrado = true;
                         asignaturasSeleccionadas.add(asignaturas.get(j));
                     }
+
                     j++;
                 }
             }
@@ -177,36 +186,31 @@ public class Main
             System.out.println("---- CUATRIMESTRE " + cuatrimestre + " ---\n");
             for (int i = 0; i < horario.size(); i++)
             {
-                if (horario.get(i).getTipo() == cuatrimestre)
+                if (horario.get(i).getAsignatura().getCuatrimestre() == cuatrimestre)
                 {
-                    System.out.println(horario.get(i).getAsignatura().getNombre());
+                    System.out.println("\n" + horario.get(i).getAsignatura().getNombre());
 
                     switch (horario.get(i).getDia())
                     {
                         case 1:
-                            System.out.println("lunes" + horario.get(i).getHInicio());
+                            System.out.println("lunes " + horario.get(i).getHInicio());
                             break;
                         case 2:
-                            System.out.println("Martes" + horario.get(i).getHInicio());
+                            System.out.println("Martes " + horario.get(i).getHInicio());
                             break;
                         case 3:
-                            System.out.println("Miércoles" + horario.get(i).getHInicio());
+                            System.out.println("Miércoles " + horario.get(i).getHInicio());
                             break;
                         case 4:
-                            System.out.println("Jueves" + horario.get(i).getHInicio());
+                            System.out.println("Jueves " + horario.get(i).getHInicio());
                             break;
                         default:
-                            System.out.println("Viernes" + horario.get(i).getHInicio());
+                            System.out.println("Viernes " + horario.get(i).getHInicio());
                             break;
                     }
                 }
             }
         }
-    }
-
-    void salir()
-    {
-        conexion.finalizaOperacion();
     }
 
 }
