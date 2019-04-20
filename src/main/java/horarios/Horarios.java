@@ -274,7 +274,7 @@ public class Horarios
                 if (porAhoraNoCoinciden == true)
                 {
                     solActual.add(hora1);
-                    List<Asignatura> restantesAuxiliar = restantes;
+                    List<Asignatura> restantesAuxiliar = new ArrayList<>(restantes);
                     restantesAuxiliar.remove(0);
                     coincide = coincidenAsignaturasPracticas2Recursiva(nuAsig, solActual, restantesAuxiliar);
                 }
@@ -438,28 +438,37 @@ public class Horarios
         if (restantes.size() > 0)
         {
             int i = 0;
+            
+            //la iteracion con mas horas sera la que recubra el arbol de horarios
+            int numHoras = 0;
+            List<Hora> mejorHorario = new ArrayList<>(horario);
 
             // continua buscando hasta que encuentre una solucion o se quede sin practicas
-            while (horario.size() < (numAsig * 2) && i < restantes.get(0).getHorarioPractica().size())
+            while ( i < restantes.get(0).getHorarioPractica().size())
             {
                 Hora nuevaHora = restantes.get(0).getHorarioPractica().get(i);
 
-                List<Hora> horarioAux = horario;
+                List<Hora> horarioAux = new ArrayList<>(horario);
                 horarioAux.add(nuevaHora);
 
                 if (coincideListaHoras(horarioAux) == false)
                 {
                     List<Asignatura> restantesAux = restantes;
-                    restantesAux.remove(0);
+                    restantesAux.remove(horarioAux.size() - 1);
 
                     horarioAux = getHorario(horarioAux, restantesAux, numAsig);
                 }
 
-                if (horarioAux.size() == numAsig * 2)
+                if ( horarioAux.size() > numHoras )
                 {
-                    horario = horarioAux;
+                    numHoras = horarioAux.size();
+                    mejorHorario = horarioAux;
                 }
+                
+                i++;
             }
+            
+            horario = mejorHorario;
         }
 
         return horario;

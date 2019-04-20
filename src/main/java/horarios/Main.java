@@ -117,25 +117,23 @@ public class Main
     {
         boolean coincide = false;
 
-        List<Asignatura> aux1 = new ArrayList<>(asignaturasSeleccionadas);
-        List<Asignatura> aux2 = new ArrayList<>(asignaturasSeleccionadas);
-        List<Asignatura> aux3 = new ArrayList<>(asignaturasSeleccionadas);
         //----
-        System.out.println(horario.coincideHorarioTeoria(aux1));
-        System.out.println(horario.coincidenAsignaturasPracticas2(aux2));
-        System.out.println(horario.coincidenPracticaTeoria(aux3));
+        System.out.println(horario.coincideHorarioTeoria(asignaturasSeleccionadas));
+        System.out.println(horario.coincidenPracticaTeoria(asignaturasSeleccionadas));
+        System.out.println(horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas));
+        
         //----
 
         coincide = horario.coincideHorarioTeoria(asignaturasSeleccionadas);
 
         if (coincide == false)
         {
-            coincide = horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
+            coincide = horario.coincidenPracticaTeoria(asignaturasSeleccionadas); 
         }
 
         if (coincide == false)
         {
-            coincide = horario.coincidenPracticaTeoria(asignaturasSeleccionadas);
+            coincide = horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
         }
 
         return !coincide;
@@ -179,17 +177,26 @@ public class Main
 
     void mostrarHorario(List<Hora> horario)
     {
-        System.out.println("---- HORARIO ---\n\n");
+        System.out.println("---- HORARIO ----");
 
         for (int cuatrimestre = 1; cuatrimestre < 3; cuatrimestre++)
         {
-            System.out.println("---- CUATRIMESTRE " + cuatrimestre + " ---\n");
+            System.out.println("\n---- CUATRIMESTRE " + cuatrimestre + " ---");
             for (int i = 0; i < horario.size(); i++)
             {
                 if (horario.get(i).getAsignatura().getCuatrimestre() == cuatrimestre)
                 {
                     System.out.println("\n" + horario.get(i).getAsignatura().getNombre());
-
+                    
+                    if ( horario.get(i).getTipo() == 0 )
+                    {
+                        System.out.println( "TEORIA" );
+                    }
+                    else
+                    {
+                        System.out.println( "PRACTICA" );
+                    }
+                    
                     switch (horario.get(i).getDia())
                     {
                         case 1:
@@ -211,6 +218,8 @@ public class Main
                 }
             }
         }
+        
+        System.out.println("-------------\n\n");
     }
 
 }
