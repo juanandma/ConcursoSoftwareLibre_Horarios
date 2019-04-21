@@ -17,7 +17,7 @@ Para más información sobre cómo están distribuidos los horarios de teoría y
 
 	Windows 8/10. No se garantiza el funcionamiento en otras plataformas.
 	MySQL.
-	Java JDK 8.
+	OpenJDK.
 
 **INSTRUCCIONES DE INSTALACIÓN**
 
