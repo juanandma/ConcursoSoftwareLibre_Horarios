@@ -64,7 +64,7 @@ public class HorariosTest {
         boolean expResult = false;
         boolean result = instance.coincideHorarioTeoria(asignaturas);
         
-        
+        instance.VerAsignaturas(horarios);
         assertEquals(expResult, result);
     }
     
@@ -89,7 +89,7 @@ public class HorariosTest {
         horarios.add(asignaturas.get(3));
         horarios.add(asignaturas.get(5));
         
-        
+        instance.VerAsignaturas(horarios);
         boolean expResult = false;
         //boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
         boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
@@ -99,7 +99,7 @@ public class HorariosTest {
     /**
      * Test of coincidenPracticaTeoria method, of class Horarios.
      */
-    /*@Test
+    @Test
     public void testCoincidenPracticaTeoria() {
         System.out.println("coincidenPracticaTeoria");
         
@@ -116,13 +116,13 @@ public class HorariosTest {
         horarios.add(asignaturas.get(3));
         horarios.add(asignaturas.get(5));
         
-        
+        instance.VerAsignaturas(horarios);
         boolean expResult = false;
         boolean result = instance.coincidenPracticaTeoria(horarios);
         assertEquals(expResult, result);
         
 
-    }*/
+    }
 
     /**
      * Test of VerAsignaturas method, of class Horarios.
