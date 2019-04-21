@@ -28,7 +28,7 @@ public class Horarios
         LocalTime inicio2 = h2.getHInicio();
         LocalTime fin2 = h2.getHFin();
 
-        if ( fin1.isBefore(inicio2) || fin2.isBefore(inicio1) )
+        if (fin1.isBefore(inicio2) || fin2.isBefore(inicio1))
         {
             coincide = false;
         }
@@ -59,7 +59,7 @@ public class Horarios
         while (i < horario.size() && coincide == false)
         {
             Hora horaActual = horario.get(i);
-
+            
             for (int j = i; j < horario.size(); j++)
             {
                 if (j != i)
@@ -70,6 +70,8 @@ public class Horarios
                     }
                 }
             }
+            
+            i++;
         }
 
         return coincide;
@@ -235,21 +237,20 @@ public class Horarios
     {
 
         boolean coincide = false;
-         List<Asignatura> restantes = new ArrayList<>(asignaturas);
+        List<Asignatura> restantes = new ArrayList<>(asignaturas);
         List<Hora> solActual = new ArrayList<>();
 
-        coincide = coincidenAsignaturasPracticas2Recursiva(asignaturas.size(), solActual, restantes);
+        coincide = coincidenAsignaturasPracticas2Recursiva( solActual, restantes);
 
         return coincide;
-
     }
 
-    public boolean coincidenAsignaturasPracticas2Recursiva(int nuAsig, List<Hora> solActual, List<Asignatura> restantes)
+    public boolean coincidenAsignaturasPracticas2Recursiva( List<Hora> solActual, List<Asignatura> restantes)
     {
 
         boolean coincide = true;
 
-        if (solActual.size() == nuAsig)
+        if (restantes.size() == 0)
         {
             coincide = false;
         } else
@@ -257,26 +258,20 @@ public class Horarios
             int i = 0;
             while (coincide == true && i < restantes.get(0).getHorarioPractica().size())
             {
-                boolean porAhoraNoCoinciden = true;
-
                 Hora hora1 = restantes.get(0).getHorarioPractica().get(i);
+                List<Hora> solActualAux = new ArrayList<>(solActual);
+                solActualAux.add(hora1);
 
-                for (int j = 0; j < solActual.size(); j++)
+                if (coincideListaHoras(solActualAux) == false)
                 {
-                    Hora hora2 = solActual.get(j);
-
-                    if (coincidenHoras(hora1, hora2))
-                    {
-                        porAhoraNoCoinciden = false;
-                    }
-                }
-
-                if (porAhoraNoCoinciden == true)
-                {
-                    solActual.add(hora1);
                     List<Asignatura> restantesAuxiliar = new ArrayList<>(restantes);
                     restantesAuxiliar.remove(0);
-                    coincide = coincidenAsignaturasPracticas2Recursiva(nuAsig, solActual, restantesAuxiliar);
+                    coincide = coincidenAsignaturasPracticas2Recursiva( solActualAux, restantesAuxiliar);
+                }
+
+                if (coincide == false)
+                {
+                    solActual = solActualAux;
                 }
 
                 i++;
@@ -437,14 +432,13 @@ public class Horarios
 
         if (restantes.size() > 0)
         {
-            int i = 0;
-            
+
             //la iteracion con mas horas sera la que recubra el arbol de horarios
             int numHoras = 0;
             List<Hora> mejorHorario = new ArrayList<>(horario);
 
             // continua buscando hasta que encuentre una solucion o se quede sin practicas
-            while ( i < restantes.get(0).getHorarioPractica().size())
+            for (int i = 0; i < restantes.get(0).getHorarioPractica().size(); i++)
             {
                 Hora nuevaHora = restantes.get(0).getHorarioPractica().get(i);
 
@@ -459,15 +453,13 @@ public class Horarios
                     horarioAux = getHorario(horarioAux, restantesAux, numAsig);
                 }
 
-                if ( horarioAux.size() > numHoras )
+                if (horarioAux.size() > numHoras)
                 {
                     numHoras = horarioAux.size();
                     mejorHorario = horarioAux;
                 }
-                
-                i++;
             }
-            
+
             horario = mejorHorario;
         }
 

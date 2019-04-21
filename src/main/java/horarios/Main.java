@@ -118,9 +118,9 @@ public class Main
         boolean coincide = false;
 
         //----
-        System.out.println(horario.coincideHorarioTeoria(asignaturasSeleccionadas));
-        System.out.println(horario.coincidenPracticaTeoria(asignaturasSeleccionadas));
-        System.out.println(horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas));
+        System.out.println("teoria " + horario.coincideHorarioTeoria(asignaturasSeleccionadas));
+        System.out.println("practicas con teoria " + horario.coincidenPracticaTeoria(asignaturasSeleccionadas));
+        System.out.println("practicas con practicas " + horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas));
         
         //----
 
