@@ -33,7 +33,7 @@ Mas información en la [wiki](https://github.com/juanandma/ConcursoSoftwareLibre
 
 	O
 
-	Descargar el proyecto en un zip, y luego importar al IDE que prefiera. Se recomienda el IDE Netbeans, pues es el que se ha 		usado.
+	Descargar el proyecto en un zip, y luego importar al IDE que prefiera. Usar OpenJDK.
 
 *Todas las contribuciones son más que bienvenidas.*
 
