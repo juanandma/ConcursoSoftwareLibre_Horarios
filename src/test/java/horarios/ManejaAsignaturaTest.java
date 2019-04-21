@@ -54,30 +54,6 @@ public class ManejaAsignaturaTest {
 
     }
 
-    /**
-     * Test of finalizaOperacion method, of class ManejaAsignatura.
-     */
-    @Test
-    public void testFinalizaOperacion() {
-        System.out.println("finalizaOperacion");
-        ManejaAsignatura instance = new ManejaAsignatura();
-        instance.finalizaOperacion();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of manejaExcepcion method, of class ManejaAsignatura.
-     */
-    @Test
-    public void testManejaExcepcion() {
-        System.out.println("manejaExcepcion");
-        HibernateException he = null;
-        ManejaAsignatura instance = new ManejaAsignatura();
-        instance.manejaExcepcion(he);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getAsignaturas method, of class ManejaAsignatura.
@@ -86,7 +62,6 @@ public class ManejaAsignaturaTest {
     public void testGetAsignaturas() {
         System.out.println("getAsignaturas");
         ManejaAsignatura instance = new ManejaAsignatura();
-        List<Asignatura> expResult = null;
         List<Asignatura> result = instance.getAsignaturas();
         
         for (int i = 0; i < result.size(); i++) {
@@ -102,7 +77,7 @@ public class ManejaAsignaturaTest {
             }
         }
         
-        assertEquals(expResult, result);
+        assertNotNull(result);
     }
 
    

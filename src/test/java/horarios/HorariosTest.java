@@ -61,7 +61,7 @@ public class HorariosTest {
         horarios.add(asignaturas.get(5));
         
         instance.coincideHorarioTeoria(horarios);
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.coincideHorarioTeoria(asignaturas);
         
         instance.VerAsignaturas(horarios);
@@ -90,7 +90,7 @@ public class HorariosTest {
         horarios.add(asignaturas.get(5));
         
         instance.VerAsignaturas(horarios);
-        boolean expResult = false;
+        boolean expResult = true;
         //boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
         boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
         assertEquals(expResult, result);
@@ -117,7 +117,7 @@ public class HorariosTest {
         horarios.add(asignaturas.get(5));
         
         instance.VerAsignaturas(horarios);
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.coincidenPracticaTeoria(horarios);
         assertEquals(expResult, result);
         
