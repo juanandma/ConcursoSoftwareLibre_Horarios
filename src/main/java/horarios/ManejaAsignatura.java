@@ -46,7 +46,7 @@ public class ManejaAsignatura {
         try {
             iniciaOperacion();
 
-            asignaturas = sesion.createQuery("from Asignatura u left join fetch u.horas").list();
+            asignaturas = sesion.createQuery("SELECT DISTINCT u from Asignatura u join fetch u.horas").list();
             System.out.println("Asignaturas consultadas");
 
         } catch (HibernateException he) {
