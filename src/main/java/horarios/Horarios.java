@@ -64,7 +64,7 @@ public class Horarios
             {
                 if (j != i)
                 {
-                    if (coincidenHoras(horaActual, horario.get(i)))
+                    if (coincidenHoras(horaActual, horario.get(j)))
                     {
                         coincide = true;
                     }
