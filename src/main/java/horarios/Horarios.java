@@ -152,7 +152,7 @@ public class Horarios
 
     //devuelve true si no existe ninguna combinacion en la que las practicas de una asignatura 
     //sean compatibles con las demas practicas de otras asignaturas.
-    public boolean coincidenAsignaturasPracticas(List<Asignatura> asignaturas)
+    /*public boolean coincidenAsignaturasPracticas(List<Asignatura> asignaturas)
     {
 
         boolean coincide = false;
@@ -231,7 +231,7 @@ public class Horarios
         }
 
         return coincide;
-    }
+    }*/
 
     public boolean coincidenAsignaturasPracticas2(List<Asignatura> asignaturas)
     {
