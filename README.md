@@ -22,7 +22,7 @@ Para más información sobre cómo están distribuidos los horarios de teoría y
 **INSTRUCCIONES DE INSTALACIÓN**
 
 Para sistemas operativos Windows, 
-Descargar el archivo .jar y el script [baseDeDatos.sql](https://github.com/juanandma/ConcursoSoftwareLibre_Horarios/baseDeDatos.sql)
+Descargar el archivo .jar y el script [baseDeDatos.sql](https://github.com/juanandma/ConcursoSoftwareLibre_Horarios/blob/master/baseDeDatos.sql)
 Crear una base de datos MySQL llamada ‘horarios’ y ejecutar las sentencias de tablas.sql.
 	
 Mas información en la [wiki](https://github.com/juanandma/ConcursoSoftwareLibre_Horarios/wiki/Instalaci%C3%B3n).
