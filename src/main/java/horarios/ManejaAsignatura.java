@@ -19,6 +19,13 @@ import org.hibernate.Transaction;
  */
 public class ManejaAsignatura {
 
+    
+    private static ManejaAsignatura miManejaAsignatura = new ManejaAsignatura();
+    
+    public static ManejaAsignatura getmiManejaAsignatura(){
+        return miManejaAsignatura;
+    }
+    
     private Session sesion;
     private Transaction tx;
 
