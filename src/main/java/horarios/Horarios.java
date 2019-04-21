@@ -28,10 +28,17 @@ public class Horarios
         LocalTime inicio2 = h2.getHInicio();
         LocalTime fin2 = h2.getHFin();
 
-        if (fin1.isBefore(inicio2) || fin2.isBefore(inicio1))
+        if (fin1.isBefore(inicio2) || fin1.equals(inicio2) )
         {
             coincide = false;
         }
+        
+        
+        if ( fin2.equals(inicio1) || fin2.isBefore(inicio1))
+        {
+            coincide = false;
+        }
+        
 
         //tambien compruebo el dia de la semana
         if (h1.getDia() != h2.getDia())
@@ -328,7 +335,7 @@ public class Horarios
 
         while (coincide == false && i < asignaturas.size())
         {
-            List<Hora> horasTeoria = asignaturas.get(i).getHorarioTeoria();
+            List<Hora> horasTeoria = new ArrayList<>(asignaturas.get(i).getHorarioTeoria());
             horasTeoria.add(horaPractica);
 
             if (coincideListaHoras(horasTeoria))
@@ -447,7 +454,7 @@ public class Horarios
 
                 if (coincideListaHoras(horarioAux) == false)
                 {
-                    List<Asignatura> restantesAux = restantes;
+                    List<Asignatura> restantesAux = new ArrayList<>(restantes);
                     restantesAux.remove(horarioAux.size() - 1);
 
                     horarioAux = getHorario(horarioAux, restantesAux, numAsig);
