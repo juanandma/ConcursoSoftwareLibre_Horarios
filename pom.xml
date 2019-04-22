@@ -69,7 +69,7 @@
                     <archive>
                         <index>true</index>
                         <manifest>
-                            <mainClass>horarios.Main</mainClass>
+                            <mainClass>Presentacion.Interfaz</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
