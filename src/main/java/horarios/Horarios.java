@@ -17,11 +17,11 @@ public class Horarios
 {
 
     
-    private static Horarios miHorarios = new Horarios();
+    /*private static Horarios miHorarios = new Horarios();
     
     public static Horarios getmiHorarios(){
         return miHorarios;
-    }
+    }*/
     
     //Las busquedas son todas exhaustivas (malo)
     private boolean coincidenHoras(Hora h1, Hora h2)
