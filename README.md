@@ -24,6 +24,8 @@ Para más información sobre cómo están distribuidos los horarios de teoría y
 Para sistemas operativos Windows, 
 Descargar el archivo .jar y el script [baseDeDatos.sql](https://github.com/juanandma/ConcursoSoftwareLibre_Horarios/blob/master/baseDeDatos.sql)
 Crear una base de datos MySQL llamada ‘horarios’ y ejecutar las sentencias de tablas.sql.
+
+*Atención: Existe un bug en el release. EL hibernate.reveng.xml no es capaz de realizar la conexión con la BD. Se recomienda ejecutar el proyecto en Netbeans*
 	
 Mas información en la [wiki](https://github.com/juanandma/ConcursoSoftwareLibre_Horarios/wiki/Instalaci%C3%B3n).
 
