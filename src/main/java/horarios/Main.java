@@ -138,7 +138,7 @@ public class Main
 
         return !coincide;
     }
-
+  
     void seleccionarAsignaturas()
     {
         // borro las asignaturas seleccionadas anteriormente
@@ -174,7 +174,7 @@ public class Main
             }
         }
     }
-
+    
     void mostrarHorario(List<Hora> horario)
     {
         System.out.println("---- HORARIO ----");
