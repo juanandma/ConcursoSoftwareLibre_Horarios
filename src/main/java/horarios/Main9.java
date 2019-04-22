@@ -24,6 +24,7 @@ public class Main9 {
     private HorariosTeoria horariosTeoria = new HorariosTeoria();
     private HorariosTeoriaPracticas horariosTeoriaPracticas = new HorariosTeoriaPracticas();
     private HorariosPracticas horariosPracticas = new HorariosPracticas();
+    private HorariosGet horariosGet = new HorariosGet();
 
     Main9() {
         // conexion con la base de datos
@@ -75,7 +76,7 @@ public class Main9 {
 
                 // devuelve una lista de horas de teoria y practica compatibles
                 case 2: {
-                    mostrarHorario(horario.getHorario(asignaturasSeleccionadas));
+                    mostrarHorario(horariosGet.getHorario(asignaturasSeleccionadas));
                     break;
                 }
 
@@ -114,7 +115,8 @@ public class Main9 {
         System.out.println("practicas con teoria " + horariosTeoriaPracticas.coincidenPracticaTeoria(asignaturasSeleccionadas));
         System.out.println("practicas con practicas " + horariosPracticas.coincidenAsignaturasPracticas2(asignaturasSeleccionadas));
 
-         */
+        */
+        
         coincide = horariosTeoria.coincideHorarioTeoria(asignaturasSeleccionadas);
 
         if (coincide == false) {
