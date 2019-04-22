@@ -462,7 +462,7 @@ public class Horarios
                 if (coincideListaHoras(horarioAux) == false)
                 {
                     List<Asignatura> restantesAux = new ArrayList<>(restantes);
-                    restantesAux.remove(horarioAux.size() - 1);
+                    restantesAux.remove(0);
 
                     horarioAux = getHorario(horarioAux, restantesAux, numAsig);
                 }
