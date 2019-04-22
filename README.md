@@ -35,7 +35,7 @@ Mas información en la [wiki](https://github.com/juanandma/ConcursoSoftwareLibre
 
 	Descargar el proyecto en un zip, y luego importar al IDE que prefiera. Hemos usado OpenJDK, apache Netbeans y Maven.
 	
-	Para generar .jar, ejectuar "mvn package" en el directorio del proyecto.
+	Para generar .jar, ejecutar "mvn package" en el directorio del proyecto.
 
 *Todas las contribuciones son más que bienvenidas.*
 
