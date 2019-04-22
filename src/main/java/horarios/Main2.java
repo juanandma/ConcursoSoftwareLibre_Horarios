@@ -89,7 +89,7 @@ public class Main2
         return asignaturas;
     }
     
-    List<Asignatura> asignaturasSeleccionadas()
+    List<Asignatura> getAsignaturasSeleccionadas()
     {
         return asignaturasSeleccionadas;
     }

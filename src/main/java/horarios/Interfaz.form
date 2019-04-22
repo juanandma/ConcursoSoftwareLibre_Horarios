@@ -32,11 +32,11 @@
                           <Component id="borrarSeleccionadas" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="AsignaturaAseleccionar" min="-2" pref="143" max="-2" attributes="0"/>
+                      <Component id="AsignaturaASeleccionar" min="-2" pref="143" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                       <Component id="generarHorario" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="comprobarAsignaturas" min="-2" pref="162" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="coincidenAsignaturas" min="-2" pref="143" max="-2" attributes="0"/>
@@ -59,17 +59,17 @@
                       <Component id="borrarSeleccionadas" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="AsignaturaAseleccionar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="AsignaturaASeleccionar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="meterAsignatura" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="182" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="256" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="coincidenAsignaturas" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="comprobarAsignaturas" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="generarHorario" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -80,12 +80,15 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="AsignaturaAseleccionar">
+    <Component class="javax.swing.JTextField" name="AsignaturaASeleccionar">
     </Component>
     <Component class="javax.swing.JButton" name="meterAsignatura">
       <Properties>
         <Property name="text" type="java.lang.String" value="introducir asignatura"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="meterAsignaturaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="coincidenAsignaturas">
     </Component>
@@ -93,11 +96,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="comprobar si coinciden"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comprobarAsignaturasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="generarHorario">
       <Properties>
         <Property name="text" type="java.lang.String" value="generar horario"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarHorarioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="borrarSeleccionadas">
       <Properties>

@@ -14,22 +14,22 @@ import java.util.List;
  */
 public class Interfaz extends javax.swing.JFrame
 {
+
     Main2 prueba;
     private List<Asignatura> asignaturas;
     private List<Asignatura> asignaturasSeleccionadas;
-    
-    
+
     /**
      * Creates new form NewJFrame
      */
     public Interfaz()
     {
         initComponents();
-        
+
         prueba = new Main2();
         asignaturas = prueba.getAsignaturas();
         asignaturasSeleccionadas = new ArrayList<>();
-        
+
         pintaListaAsignaturas();
     }
 
@@ -43,7 +43,7 @@ public class Interfaz extends javax.swing.JFrame
     private void initComponents()
     {
 
-        AsignaturaAseleccionar = new javax.swing.JTextField();
+        AsignaturaASeleccionar = new javax.swing.JTextField();
         meterAsignatura = new javax.swing.JButton();
         coincidenAsignaturas = new javax.swing.JTextField();
         comprobarAsignaturas = new javax.swing.JButton();
@@ -57,10 +57,31 @@ public class Interfaz extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         meterAsignatura.setText("introducir asignatura");
+        meterAsignatura.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                meterAsignaturaActionPerformed(evt);
+            }
+        });
 
         comprobarAsignaturas.setText("comprobar si coinciden");
+        comprobarAsignaturas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comprobarAsignaturasActionPerformed(evt);
+            }
+        });
 
         generarHorario.setText("generar horario");
+        generarHorario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                generarHorarioActionPerformed(evt);
+            }
+        });
 
         borrarSeleccionadas.setText("borrar seleccionadas");
         borrarSeleccionadas.addActionListener(new java.awt.event.ActionListener()
@@ -91,10 +112,10 @@ public class Interfaz extends javax.swing.JFrame
                             .addComponent(meterAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(borrarSeleccionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AsignaturaAseleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(AsignaturaASeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(generarHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(comprobarAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(coincidenAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -112,15 +133,15 @@ public class Interfaz extends javax.swing.JFrame
                         .addComponent(borrarSeleccionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AsignaturaAseleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AsignaturaASeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(meterAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(coincidenAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comprobarAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(generarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap(56, Short.MAX_VALUE))
@@ -131,12 +152,46 @@ public class Interfaz extends javax.swing.JFrame
 
     private void borrarSeleccionadasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_borrarSeleccionadasActionPerformed
     {//GEN-HEADEREND:event_borrarSeleccionadasActionPerformed
-        
+
         // TODO add your handling code here:
         prueba.borrarSeleccionadas();
         asignaturasSeleccionadas = new ArrayList<>();
-        
+
+        listaAsignaturasSeleccionadas.setText("");
+
     }//GEN-LAST:event_borrarSeleccionadasActionPerformed
+
+    private void generarHorarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_generarHorarioActionPerformed
+    {//GEN-HEADEREND:event_generarHorarioActionPerformed
+        // TODO add your handling code here:
+        List<Hora> horario = prueba.getHorario();
+        VentanaHorario ventanaHorario = new VentanaHorario();
+        ventanaHorario.setVisible(true);
+    }//GEN-LAST:event_generarHorarioActionPerformed
+
+    private void comprobarAsignaturasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comprobarAsignaturasActionPerformed
+    {//GEN-HEADEREND:event_comprobarAsignaturasActionPerformed
+        // TODO add your handling code here:
+        boolean valido = prueba.comprobarHorario();
+
+        if (!valido)
+        {
+            coincidenAsignaturas.setText("coinciden");
+        } else
+        {
+            coincidenAsignaturas.setText("no coinciden");
+        }
+
+    }//GEN-LAST:event_comprobarAsignaturasActionPerformed
+
+    private void meterAsignaturaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_meterAsignaturaActionPerformed
+    {//GEN-HEADEREND:event_meterAsignaturaActionPerformed
+        // TODO add your handling code here:
+        String nuevaAsignatura = AsignaturaASeleccionar.getText();
+        prueba.seleccionarAsignatura(nuevaAsignatura);
+        asignaturasSeleccionadas = prueba.getAsignaturasSeleccionadas();
+        pintalistaAsignaturasSeleccionadas();
+    }//GEN-LAST:event_meterAsignaturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,8 +239,7 @@ public class Interfaz extends javax.swing.JFrame
 
         });
     }
-    
-    
+
     void pintaListaAsignaturas()
     {
         String nombresAsignaturas = "";
@@ -193,12 +247,87 @@ public class Interfaz extends javax.swing.JFrame
         {
             nombresAsignaturas = nombresAsignaturas + asignaturas.get(i).getNombre() + "\n";
         }
-        
+
         listaAsignaturas.setText(nombresAsignaturas);
     }
 
+    String diaDeLaSemana(int dia)
+    {
+        String nombreDia = "";
+
+        switch (dia)
+        {
+            case 1:
+                nombreDia = "lunes";
+                break;
+            case 2:
+                nombreDia = "martes";
+                break;
+            case 3:
+                nombreDia = "miercoles";
+                break;
+            case 4:
+                nombreDia = "jueves";
+                break;
+            default:
+                nombreDia = "viernes";
+                break;
+        }
+        
+        return nombreDia;
+    }
+
+
+
+void pintalistaAsignaturasSeleccionadas()
+    {
+        listaAsignaturasSeleccionadas.setText("");
+
+        for (int i = 0; i < asignaturasSeleccionadas.size(); i++)
+        {
+            String asignaturaActual = "";
+            asignaturaActual = asignaturaActual + asignaturasSeleccionadas.get(i).getNombre() + " ";
+
+            if (asignaturasSeleccionadas.get(i).getCuatrimestre() == 1)
+            {
+                asignaturaActual = asignaturaActual + "cuatrimestre 1\n";
+            } else
+            {
+                asignaturaActual = asignaturaActual + "cuatrimestre 2\n";
+            }
+
+            asignaturaActual = asignaturaActual + "Teoria: ";
+
+            for (int j = 0; j < asignaturasSeleccionadas.get(i).getHorarioTeoria().size(); j++)
+            {
+                int dia = asignaturasSeleccionadas.get(i).getHorarioTeoria().get(j).getDia();
+                asignaturaActual = asignaturaActual + diaDeLaSemana( dia );
+                asignaturaActual = asignaturaActual + " ";
+                asignaturaActual = asignaturaActual + asignaturasSeleccionadas.get(i).getHorarioTeoria().get(j).getHInicio();
+                asignaturaActual = asignaturaActual + " ";
+            }
+
+            asignaturaActual = asignaturaActual + "\nPractica: ";
+
+            for (int j = 0; j < asignaturasSeleccionadas.get(i).getHorarioTeoria().size(); j++)
+            {
+                int dia = asignaturasSeleccionadas.get(i).getHorarioPractica().get(j).getDia();
+                asignaturaActual = asignaturaActual + diaDeLaSemana( dia );
+                asignaturaActual = asignaturaActual + " ";
+                asignaturaActual = asignaturaActual + asignaturasSeleccionadas.get(i).getHorarioPractica().get(j).getHInicio();
+                asignaturaActual = asignaturaActual + " ";
+            }
+
+            asignaturaActual = asignaturaActual + "\n\n";
+            
+            listaAsignaturasSeleccionadas.setText(listaAsignaturasSeleccionadas.getText() + asignaturaActual);
+
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AsignaturaAseleccionar;
+    private javax.swing.JTextField AsignaturaASeleccionar;
     private javax.swing.JButton borrarSeleccionadas;
     private javax.swing.JTextField coincidenAsignaturas;
     private javax.swing.JButton comprobarAsignaturas;
