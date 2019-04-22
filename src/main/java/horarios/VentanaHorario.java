@@ -119,10 +119,11 @@ public class VentanaHorario extends javax.swing.JFrame
             nuevaCadena(salida, nuevo);
             for (int i = 0; i < horario.size(); i++) {
                 if (horario.get(i).getAsignatura().getCuatrimestre() == cuatrimestre) {
-                    //System.out.println("\n" + horario.get(i).getAsignatura().getNombre());
+                    //System.out.println();
+                    nuevo="\n" + horario.get(i).getAsignatura().getNombre()+ "\n";
                     nuevaCadena(salida, nuevo);
 
-                    nuevo="\n---- CUATRIMESTRE " + cuatrimestre + " ---"+ "\n";
+                    
                     nuevaCadena(salida, nuevo);
                     
                     if (horario.get(i).getTipo() == 0) {
