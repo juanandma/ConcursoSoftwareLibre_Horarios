@@ -61,9 +61,14 @@ public class ManejaAsignatura {
             throw he;
         } finally {
             finalizaOperacion();
-            return asignaturas;
+            
         }
+        return asignaturas;
 
+    }
+    
+    public void cerrarSesion(){
+        NewHibernateUtil.getSessionFactory().close();
     }
 
 }
