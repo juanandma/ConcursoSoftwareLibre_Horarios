@@ -60,8 +60,8 @@ public class HorariosPracticasTest {
         horarios.add(asignaturas.get(5));
         
         instance.VerAsignaturas(horarios);
-        boolean expResult = true;
-        boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
+        boolean expResult = false;
+        boolean result = instance.coincidenAsignaturasPracticas2(horarios);
         assertEquals(expResult, result);
     }
     
@@ -84,6 +84,25 @@ public class HorariosPracticasTest {
         horarios.add(asignaturas.get(1));
         
         instance.VerAsignaturas(horarios);
+        boolean expResult = false;
+        boolean result = instance.coincidenAsignaturasPracticas2(horarios);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testCoincidenAsignaturasPracticas2_3() {
+        System.out.println("coincidenAsignaturasPracticas2");
+        
+        ManejaAsignatura mAsig=new ManejaAsignatura();
+        
+        List<Asignatura> asignaturas = mAsig.getAsignaturas();
+        
+        
+        Horarios instance = new Horarios();
+        
+        
+        
+        instance.VerAsignaturas(asignaturas);
         boolean expResult = true;
         boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
         assertEquals(expResult, result);

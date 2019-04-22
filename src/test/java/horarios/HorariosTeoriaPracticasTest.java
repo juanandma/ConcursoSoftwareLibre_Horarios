@@ -87,4 +87,21 @@ public class HorariosTeoriaPracticasTest {
         assertEquals(expResult, result);
     }
     
+    @Test
+    public void testCoincidenPracticaTeoria_3() {
+        ManejaAsignatura mAsig=new ManejaAsignatura();
+        
+        List<Asignatura> asignaturas = mAsig.getAsignaturas();
+        
+        
+        Horarios instance = new Horarios();
+
+        
+        
+        instance.VerAsignaturas(asignaturas);
+        boolean expResult = true;
+        boolean result = instance.coincidenPracticaTeoria(asignaturas);
+        assertEquals(expResult, result);
+    }
+    
 }

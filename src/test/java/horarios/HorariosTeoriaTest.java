@@ -94,4 +94,26 @@ public class HorariosTeoriaTest {
         assertEquals(expResult, result);
     }
     
+    
+    @Test
+    public void testCoincideHorarioTeoria_3() {
+        System.out.println("coincideHorarioTeoria");
+        
+        ManejaAsignatura mAsig=new ManejaAsignatura();
+        
+        List<Asignatura> asignaturas = mAsig.getAsignaturas();
+        
+        
+        Horarios instance = new Horarios();
+        
+        
+        
+        instance.coincideHorarioTeoria(asignaturas);
+        boolean expResult = true;
+        boolean result = instance.coincideHorarioTeoria(asignaturas);
+        
+        instance.VerAsignaturas(asignaturas);
+        assertEquals(expResult, result);
+    }
+    
 }
