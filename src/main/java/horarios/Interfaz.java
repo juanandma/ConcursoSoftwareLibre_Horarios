@@ -165,7 +165,7 @@ public class Interfaz extends javax.swing.JFrame
     {//GEN-HEADEREND:event_generarHorarioActionPerformed
         // TODO add your handling code here:
         List<Hora> horario = prueba.getHorario();
-        VentanaHorario ventanaHorario = new VentanaHorario();
+        VentanaHorario ventanaHorario = new VentanaHorario(horario);
         ventanaHorario.setVisible(true);
     }//GEN-LAST:event_generarHorarioActionPerformed
 

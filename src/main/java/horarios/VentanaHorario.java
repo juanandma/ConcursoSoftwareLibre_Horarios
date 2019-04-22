@@ -5,6 +5,8 @@
  */
 package horarios;
 
+import java.util.List;
+
 /**
  *
  * @author Juan
@@ -13,11 +15,17 @@ public class VentanaHorario extends javax.swing.JFrame
 {
 
     /**
+     * Creates new form VentanaHorarios
+     */
+    List<Hora> horario;
+    /**
      * Creates new form VentanaHorario
      */
-    public VentanaHorario()
+    public VentanaHorario(List<Hora> horario)
     {
         initComponents();
+        this.horario=horario;
+        mostrarHorario(horario);
     }
 
     /**
@@ -31,30 +39,29 @@ public class VentanaHorario extends javax.swing.JFrame
     {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        AreaHorarios = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 400));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        AreaHorarios.setColumns(20);
+        AreaHorarios.setRows(5);
+        jScrollPane1.setViewportView(AreaHorarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -65,49 +72,74 @@ public class VentanaHorario extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+
+    }
+    
+    public void mostrarHorario(List<Hora> horario) {
+        //System.out.println("---- HORARIO ----");
+        StringBuffer salida=new StringBuffer();
+        String nuevo ="";
+
+        nuevo ="---- HORARIO ----"+ "\n";
+        nuevaCadena(salida, nuevo);
+
+
+        for (int cuatrimestre = 1; cuatrimestre < 3; cuatrimestre++) {
+            //System.out.println("\n---- CUATRIMESTRE " + cuatrimestre + " ---");
+
+            nuevo ="\n---- CUATRIMESTRE " + cuatrimestre + " ---"+ "\n";
+            nuevaCadena(salida, nuevo);
+            for (int i = 0; i < horario.size(); i++) {
+                if (horario.get(i).getAsignatura().getCuatrimestre() == cuatrimestre) {
+                    //System.out.println();
+                    nuevo="\n" + horario.get(i).getAsignatura().getNombre()+ "\n";
+                    nuevaCadena(salida, nuevo);
+if (horario.get(i).getTipo() == 0) {
+                        //System.out.println("TEORIA");
+                        nuevo="TEORIA"+ "\n";
+
+                    } else {
+                        //System.out.println("PRACTICA");
+                        nuevo="PRACTICA"+ "\n";
+                    }
+                    nuevaCadena(salida, nuevo);
+
+                    switch (horario.get(i).getDia()) {
+                        case 1:
+                            //System.out.println("lunes " + horario.get(i).getHInicio());
+                            nuevo="lunes " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        case 2:
+                            //System.out.println("Martes " + horario.get(i).getHInicio());
+                            nuevo="Martes" + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        case 3:
+                            //System.out.println("Miércoles " + horario.get(i).getHInicio());
+                            nuevo="Miércoles " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        case 4:
+                            //System.out.println("Jueves " + horario.get(i).getHInicio());
+                            nuevo="Jueves " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        default:
+                            //System.out.println("Viernes " + horario.get(i).getHInicio());
+                            nuevo="Viernes " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                    }
+                    nuevaCadena(salida, nuevo);
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(VentanaHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(VentanaHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(VentanaHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(VentanaHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        AreaHorarios.setText(salida.toString());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new VentanaHorario().setVisible(true);
-            }
-
-        });
+    }
+public StringBuffer nuevaCadena(StringBuffer cadena, String nuevo){
+        cadena.append(nuevo);
+        return cadena;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea AreaHorarios;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
