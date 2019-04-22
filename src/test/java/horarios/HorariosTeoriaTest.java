@@ -5,6 +5,11 @@
  */
 package horarios;
 
+import Persistencia.ManejaAsignatura;
+import Funcionalidades.Horarios;
+import Entidades.Asignatura;
+import Funcionalidades.HorariosTeoria;
+import Funcionalidades.HorariosTeoriaPracticas;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -52,6 +57,7 @@ public class HorariosTeoriaTest {
         
         
         Horarios instance = new Horarios();
+        HorariosTeoria instance2 = new HorariosTeoria();
         
         List<Asignatura> horarios = new ArrayList<>();
         
@@ -59,9 +65,9 @@ public class HorariosTeoriaTest {
         horarios.add(asignaturas.get(3));
         horarios.add(asignaturas.get(5));
         
-        instance.coincideHorarioTeoria(horarios);
+        instance.VerAsignaturas(horarios);
         boolean expResult = true;
-        boolean result = instance.coincideHorarioTeoria(asignaturas);
+        boolean result = instance2.coincideHorarioTeoria(asignaturas);
         
         instance.VerAsignaturas(horarios);
         assertEquals(expResult, result);
@@ -78,6 +84,7 @@ public class HorariosTeoriaTest {
         
         
         Horarios instance = new Horarios();
+        HorariosTeoria instance2 = new HorariosTeoria();
         
         List<Asignatura> horarios = new ArrayList<>();
         
@@ -86,9 +93,9 @@ public class HorariosTeoriaTest {
         horarios.add(asignaturas.get(6));
         horarios.add(asignaturas.get(1));
         
-        instance.coincideHorarioTeoria(horarios);
+        instance.VerAsignaturas(horarios);
         boolean expResult = true;
-        boolean result = instance.coincideHorarioTeoria(asignaturas);
+        boolean result = instance2.coincideHorarioTeoria(asignaturas);
         
         instance.VerAsignaturas(horarios);
         assertEquals(expResult, result);
@@ -105,12 +112,13 @@ public class HorariosTeoriaTest {
         
         
         Horarios instance = new Horarios();
+        HorariosTeoria instance2 = new HorariosTeoria();
         
         
         
-        instance.coincideHorarioTeoria(asignaturas);
+        instance.VerAsignaturas(asignaturas);
         boolean expResult = true;
-        boolean result = instance.coincideHorarioTeoria(asignaturas);
+        boolean result = instance2.coincideHorarioTeoria(asignaturas);
         
         instance.VerAsignaturas(asignaturas);
         assertEquals(expResult, result);

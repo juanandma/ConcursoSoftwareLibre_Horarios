@@ -5,6 +5,9 @@
  */
 package horarios;
 
+import Persistencia.ManejaAsignatura;
+import Funcionalidades.Horarios;
+import Entidades.Asignatura;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,92 +44,9 @@ public class HorariosTest {
     }
 
     /**
-     * Test of coincideHorarioTeoria method, of class Horarios.
-     */
-    @Test
-    public void testCoincideHorarioTeoria() {
-        System.out.println("coincideHorarioTeoria");
-        
-        ManejaAsignatura mAsig=new ManejaAsignatura();
-        
-        List<Asignatura> asignaturas = mAsig.getAsignaturas();
-        
-        
-        Horarios instance = new Horarios();
-        
-        List<Asignatura> horarios = new ArrayList<>();
-        
-        horarios.add(asignaturas.get(0));
-        horarios.add(asignaturas.get(3));
-        horarios.add(asignaturas.get(5));
-        
-        instance.coincideHorarioTeoria(horarios);
-        boolean expResult = true;
-        boolean result = instance.coincideHorarioTeoria(asignaturas);
-        
-        instance.VerAsignaturas(horarios);
-        assertEquals(expResult, result);
-    }
-    
-    /**
-     * Test of coincidenAsignaturasPracticas method, of class Horarios.
-     */
-    
-    @Test
-    public void testCoincidenAsignaturasPracticas() {
-        System.out.println("coincidenAsignaturasPracticas");
-        
-        ManejaAsignatura mAsig=new ManejaAsignatura();
-        
-        List<Asignatura> asignaturas = mAsig.getAsignaturas();
-        
-        
-        Horarios instance = new Horarios();
-        
-        List<Asignatura> horarios = new ArrayList<>();
-        
-        horarios.add(asignaturas.get(0));
-        horarios.add(asignaturas.get(3));
-        horarios.add(asignaturas.get(5));
-        
-        instance.VerAsignaturas(horarios);
-        boolean expResult = true;
-        //boolean result = instance.coincidenAsignaturasPracticas(asignaturas);
-        boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of coincidenPracticaTeoria method, of class Horarios.
-     */
-    @Test
-    public void testCoincidenPracticaTeoria() {
-        System.out.println("coincidenPracticaTeoria");
-        
-        ManejaAsignatura mAsig=new ManejaAsignatura();
-        
-        List<Asignatura> asignaturas = mAsig.getAsignaturas();
-        
-        
-        Horarios instance = new Horarios();
-        
-        List<Asignatura> horarios = new ArrayList<>();
-        
-        horarios.add(asignaturas.get(0));
-        horarios.add(asignaturas.get(3));
-        horarios.add(asignaturas.get(5));
-        
-        instance.VerAsignaturas(horarios);
-        boolean expResult = true;
-        boolean result = instance.coincidenPracticaTeoria(horarios);
-        assertEquals(expResult, result);
-        
-
-    }
-
-    /**
      * Test of VerAsignaturas method, of class Horarios.
      */
+    
     @Test
     public void testVerAsignaturas() {
         System.out.println("VerAsignaturas");

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package horarios;
+package Funcionalidades;
 
+import Entidades.Hora;
 import java.time.LocalTime;
 import java.util.List;
 

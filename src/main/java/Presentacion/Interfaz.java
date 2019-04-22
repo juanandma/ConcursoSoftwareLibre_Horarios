@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package horarios;
+package Presentacion;
 
+import Entidades.Hora;
+import Entidades.Asignatura;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class Interfaz extends javax.swing.JFrame
 {
 
-    Main2 prueba;
+    MainInterfaz prueba;
     private List<Asignatura> asignaturas;
     private List<Asignatura> asignaturasSeleccionadas;
 
@@ -26,7 +28,7 @@ public class Interfaz extends javax.swing.JFrame
     {
         initComponents();
 
-        prueba = new Main2();
+        prueba = new MainInterfaz();
         asignaturas = prueba.getAsignaturas();
         asignaturasSeleccionadas = new ArrayList<>();
 
@@ -40,8 +42,7 @@ public class Interfaz extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         AsignaturaASeleccionar = new javax.swing.JTextField();
         meterAsignatura = new javax.swing.JButton();
@@ -57,37 +58,29 @@ public class Interfaz extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         meterAsignatura.setText("introducir asignatura");
-        meterAsignatura.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        meterAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 meterAsignaturaActionPerformed(evt);
             }
         });
 
         comprobarAsignaturas.setText("comprobar si coinciden");
-        comprobarAsignaturas.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        comprobarAsignaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comprobarAsignaturasActionPerformed(evt);
             }
         });
 
         generarHorario.setText("generar horario");
-        generarHorario.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        generarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generarHorarioActionPerformed(evt);
             }
         });
 
         borrarSeleccionadas.setText("borrar seleccionadas");
-        borrarSeleccionadas.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        borrarSeleccionadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarSeleccionadasActionPerformed(evt);
             }
         });

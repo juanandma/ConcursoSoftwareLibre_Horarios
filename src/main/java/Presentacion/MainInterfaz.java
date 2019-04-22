@@ -3,8 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package horarios;
+package Presentacion;
 
+import Funcionalidades.Horarios;
+import Entidades.Hora;
+import Entidades.Asignatura;
+import Funcionalidades.HorariosGet;
+import Funcionalidades.HorariosPracticas;
+import Funcionalidades.HorariosTeoria;
+import Funcionalidades.HorariosTeoriaPracticas;
+import Persistencia.ManejaAsignatura;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +24,19 @@ import java.util.logging.Logger;
  *
  * @author JUANM
  */
-public class Main2
+public class MainInterfaz
 {
 
     private List<Asignatura> asignaturas;
     private List<Asignatura> asignaturasSeleccionadas;
     private Horarios horario;
     private ManejaAsignatura conexion;
+    private HorariosTeoria horariosTeoria = new HorariosTeoria();
+    private HorariosTeoriaPracticas horariosTeoriaPracticas = new HorariosTeoriaPracticas();
+    private HorariosPracticas horariosPracticas = new HorariosPracticas();
+    private HorariosGet horariosGet = new HorariosGet();
 
-    Main2()
+    MainInterfaz()
     {
         // conexion con la base de datos
         conexion = new ManejaAsignatura();
@@ -41,16 +53,16 @@ public class Main2
     {
         boolean coincide = false;
 
-        coincide = horario.coincideHorarioTeoria(asignaturasSeleccionadas);
+        coincide = horariosTeoria.coincideHorarioTeoria(asignaturasSeleccionadas);
 
         if (coincide == false)
         {
-            coincide = horario.coincidenPracticaTeoria(asignaturasSeleccionadas);
+            coincide = horariosTeoriaPracticas.coincidenPracticaTeoria(asignaturasSeleccionadas);
         }
 
         if (coincide == false)
         {
-            coincide = horario.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
+            coincide = horariosPracticas.coincidenAsignaturasPracticas2(asignaturasSeleccionadas);
         }
 
         return !coincide;
@@ -81,7 +93,7 @@ public class Main2
 
     List<Hora> getHorario()
     {
-        return (horario.getHorario(asignaturasSeleccionadas));
+        return (horariosGet.getHorario(asignaturasSeleccionadas));
     }
     
     List<Asignatura> getAsignaturas()

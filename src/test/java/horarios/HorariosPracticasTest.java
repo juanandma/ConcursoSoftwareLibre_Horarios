@@ -5,6 +5,10 @@
  */
 package horarios;
 
+import Persistencia.ManejaAsignatura;
+import Funcionalidades.Horarios;
+import Entidades.Asignatura;
+import Funcionalidades.HorariosPracticas;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -52,6 +56,7 @@ public class HorariosPracticasTest {
         
         
         Horarios instance = new Horarios();
+        HorariosPracticas instance2 = new HorariosPracticas();
         
         List<Asignatura> horarios = new ArrayList<>();
         
@@ -61,7 +66,7 @@ public class HorariosPracticasTest {
         
         instance.VerAsignaturas(horarios);
         boolean expResult = false;
-        boolean result = instance.coincidenAsignaturasPracticas2(horarios);
+        boolean result = instance2.coincidenAsignaturasPracticas2(horarios);
         assertEquals(expResult, result);
     }
     
@@ -75,6 +80,7 @@ public class HorariosPracticasTest {
         
         
         Horarios instance = new Horarios();
+        HorariosPracticas instance2 = new HorariosPracticas();
         
         List<Asignatura> horarios = new ArrayList<>();
         
@@ -85,7 +91,7 @@ public class HorariosPracticasTest {
         
         instance.VerAsignaturas(horarios);
         boolean expResult = false;
-        boolean result = instance.coincidenAsignaturasPracticas2(horarios);
+        boolean result = instance2.coincidenAsignaturasPracticas2(horarios);
         assertEquals(expResult, result);
     }
     
@@ -99,12 +105,13 @@ public class HorariosPracticasTest {
         
         
         Horarios instance = new Horarios();
+        HorariosPracticas instance2 = new HorariosPracticas();
         
         
         
         instance.VerAsignaturas(asignaturas);
         boolean expResult = true;
-        boolean result = instance.coincidenAsignaturasPracticas2(asignaturas);
+        boolean result = instance2.coincidenAsignaturasPracticas2(asignaturas);
         assertEquals(expResult, result);
     }
     

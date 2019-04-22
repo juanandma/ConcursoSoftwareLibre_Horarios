@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package horarios;
+package Persistencia;
 
+import Persistencia.NewHibernateUtil;
+import Entidades.Asignatura;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

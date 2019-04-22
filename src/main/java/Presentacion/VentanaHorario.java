@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package horarios;
+package Presentacion;
 
+import Entidades.Hora;
 import java.util.List;
 
 /**
@@ -35,8 +36,7 @@ public class VentanaHorario extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaHorarios = new javax.swing.JTextArea();

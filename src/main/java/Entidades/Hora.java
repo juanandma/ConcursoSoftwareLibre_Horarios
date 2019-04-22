@@ -1,6 +1,7 @@
-package horarios;
+package Entidades;
 // Generated 14-abr-2019 22:38:10 by Hibernate Tools 4.3.1
 
+import Entidades.Asignatura;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
