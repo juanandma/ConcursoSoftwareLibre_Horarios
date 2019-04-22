@@ -14,6 +14,14 @@ import java.util.List;
  */
 public class HorariosPracticas extends HorariosAbstracta{
     
+    private static HorariosPracticas horariosPracticas = new HorariosPracticas();
+
+    public static HorariosPracticas getHorariosPracticas() {
+        
+        return horariosPracticas;
+    }
+    
+    
     public boolean coincidenAsignaturasPracticas2(List<Asignatura> asignaturas)
     {
 

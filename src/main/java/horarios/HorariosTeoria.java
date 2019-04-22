@@ -13,6 +13,13 @@ import java.util.List;
  */
 public class HorariosTeoria extends HorariosAbstracta {
 
+    private static HorariosTeoria horariosTeoria = new HorariosTeoria();
+    
+    public static HorariosTeoria getHorariosTeoria() {
+        
+        return horariosTeoria;
+    }
+    
     private boolean coincidenAsignaturasTeoria(Asignatura a1, Asignatura a2) {
 
         boolean coincide = false;

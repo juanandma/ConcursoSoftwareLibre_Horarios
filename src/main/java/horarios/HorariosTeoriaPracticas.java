@@ -14,6 +14,14 @@ import java.util.List;
  */
 public class HorariosTeoriaPracticas extends HorariosAbstracta{
     
+    private static HorariosTeoriaPracticas horariosTeoriaPracticas = new HorariosTeoriaPracticas();
+    
+    public static HorariosTeoriaPracticas getHorariosTeoriaPracticas() {
+        
+        return horariosTeoriaPracticas;
+    }
+    
+    
     // devuelve true si no existe alguna conbinacion grupos de practicas de todas las 
     //asignaturas que no tenga ninguna coincidencia entre teorias
     public boolean coincidenPracticaTeoria(List<Asignatura> asignaturas)
