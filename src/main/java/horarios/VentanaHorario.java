@@ -5,6 +5,8 @@
  */
 package horarios;
 
+import java.util.List;
+
 /**
  *
  * @author Juan
@@ -12,12 +14,15 @@ package horarios;
 public class VentanaHorario extends javax.swing.JFrame
 {
 
+    List<Hora> horario;
     /**
      * Creates new form VentanaHorario
      */
-    public VentanaHorario()
+    public VentanaHorario(List<Hora> horario)
     {
         initComponents();
+        this.horario=horario;
+        mostrarHorario(horario);
     }
 
     /**
@@ -27,29 +32,33 @@ public class VentanaHorario extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
-        zonaHorario = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        AreaHorarios = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
+
+        AreaHorarios.setColumns(20);
+        AreaHorarios.setRows(5);
+        jScrollPane1.setViewportView(AreaHorarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(zonaHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(zonaHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -91,17 +100,78 @@ public class VentanaHorario extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new VentanaHorario().setVisible(true);
-            }
+        
+    }
+    
+    public void mostrarHorario(List<Hora> horario) {
+        //System.out.println("---- HORARIO ----");
+        StringBuffer salida=new StringBuffer();
+        String nuevo ="";
+        
+        nuevo ="---- HORARIO ----"+ "\n";
+        nuevaCadena(salida, nuevo);
+        
 
-        });
+        for (int cuatrimestre = 1; cuatrimestre < 3; cuatrimestre++) {
+            //System.out.println("\n---- CUATRIMESTRE " + cuatrimestre + " ---");
+            
+            nuevo ="\n---- CUATRIMESTRE " + cuatrimestre + " ---"+ "\n";
+            nuevaCadena(salida, nuevo);
+            for (int i = 0; i < horario.size(); i++) {
+                if (horario.get(i).getAsignatura().getCuatrimestre() == cuatrimestre) {
+                    //System.out.println("\n" + horario.get(i).getAsignatura().getNombre());
+                    nuevaCadena(salida, nuevo);
+
+                    nuevo="\n---- CUATRIMESTRE " + cuatrimestre + " ---"+ "\n";
+                    nuevaCadena(salida, nuevo);
+                    
+                    if (horario.get(i).getTipo() == 0) {
+                        //System.out.println("TEORIA");
+                        nuevo="TEORIA"+ "\n";
+                        
+                    } else {
+                        //System.out.println("PRACTICA");
+                        nuevo="PRACTICA"+ "\n";
+                    }
+                    nuevaCadena(salida, nuevo);
+
+                    switch (horario.get(i).getDia()) {
+                        case 1:
+                            //System.out.println("lunes " + horario.get(i).getHInicio());
+                            nuevo="lunes " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        case 2:
+                            //System.out.println("Martes " + horario.get(i).getHInicio());
+                            nuevo="Martes" + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        case 3:
+                            //System.out.println("Miércoles " + horario.get(i).getHInicio());
+                            nuevo="Miércoles " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        case 4:
+                            //System.out.println("Jueves " + horario.get(i).getHInicio());
+                            nuevo="Jueves " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                        default:
+                            //System.out.println("Viernes " + horario.get(i).getHInicio());
+                            nuevo="Viernes " + horario.get(i).getHInicio()+ "\n";
+                            break;
+                    }
+                    nuevaCadena(salida, nuevo);
+                }
+            }
+        }
+        AreaHorarios.setText(salida.toString());
+        
+    }
+    
+    public StringBuffer nuevaCadena(StringBuffer cadena, String nuevo){
+        cadena.append(nuevo);
+        return cadena;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField zonaHorario;
+    private javax.swing.JTextArea AreaHorarios;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
