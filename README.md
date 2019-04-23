@@ -13,6 +13,7 @@ Para más información sobre cómo están distribuidos los horarios de teoría y
 [Horarios Grupo Grande (Teoría)](https://www.uhu.es/etsi/simplesml/www/Horario/xml/plantilla_xml_horarios_1.php?tit=2&year=2018)
 [Horarios Grupos Reducidos (Prácticas)](http://www.uhu.es/etsi/informacion-academica/informacion-comun-todos-los-titulos/horarios-2/horarios-de-grupos-reducidos-curso-2018-19/?tit=2)
 
+
 **REQUISITOS.**
 
 	Windows 8/10. No se garantiza el funcionamiento en otras plataformas.
@@ -38,6 +39,12 @@ Mas información en la [wiki](https://github.com/juanandma/ConcursoSoftwareLibre
 	Descargar el proyecto en un zip, y luego importar al IDE que prefiera. Hemos usado OpenJDK, apache Netbeans y Maven.
 	
 	Para generar .jar, ejecutar "mvn package" en el directorio del proyecto.
+	
+**ACCESIBILIDAD**
+
+El programa hace uso de una interfaz gráfica sencilla. Es accesible por personas con daltonismo.
+
+
 
 *Todas las contribuciones son más que bienvenidas.*
 
