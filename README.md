@@ -3,6 +3,8 @@ Concurso Universitario Software Libre 2019
 
 Horarios para Alumnos
 
+**Todavia contiene bugs esta aplicación**
+
 
 Este proyecto ayuda a elegir cuales son las asignaturas que debería matricularse un alumno de Grado.
 
